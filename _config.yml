@@ -1,0 +1,18 @@
+title: Dana Marineci
+author: Dana Marineci
+
+navbar_links:
+  Dana Marineci: /
+  CV: /assets/CV_Dana_Marineci.pdf
+  Research: /research/
+  Volunteering: /volunteering/
+  Workshops: /workshops/
+  Contact: /contact/
+
+markdown: kramdown 
+kramdown:
+  input: GFM 
+
+exclude:
+  - README.md
+  - .gitignore

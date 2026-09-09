@@ -1,0 +1,703 @@
+/* Baseline global variables that apply to the entire webpage */
+:root {
+  --bg-color: #faf8f5;
+  --surface-color: #ffffff;
+  --surface-alt: #f1f3f5;
+  --text-main: #2b2b2b;
+  --text-heading: #1a1a1a;
+  --text-muted: #5e646a;
+  --text-subtle: #777777;
+  --border-color: #e2e5e8;
+  --border-subtle: #eee;
+
+  --nav-bg: #ccccff;
+  --nav-border: #b8b8f0;
+  --nav-link-color: #222222;
+  --accent-purple: #6a6ad4;
+  --accent-purple-dark: #4a4ab8;
+  --accent-purple-light: #f0f0ff;
+  --tag-bg: #f4f4fa;
+  --tag-border: #e2e2f5;
+  --tag-text: #5252a3;
+}
+
+/* When HTML data-theme attribute is set to "dark", the variables are assigned their dark-mode counterparts. */
+html[data-theme="dark"] {
+  --bg-color: #2b2d30;
+  --surface-color: #36393e;
+  --surface-alt: #40444b;
+  --text-main: #f0f2f5;
+  --text-heading: #ffffff;
+  --text-muted: #b9bbbe;
+  --text-subtle: #8e9297;
+  --border-color: #4a4d52;
+  --border-subtle: #3f4247;
+
+  --nav-bg: #ccccff;
+  --nav-border: #b8b8f0;
+  --nav-link-color: #222222;
+
+  --accent-purple: #9f9ff5;
+  --accent-purple-dark: #ccccff;
+  --accent-purple-light: #383852;
+  --tag-bg: #32353b;
+  --tag-border: #4f545c;
+  --tag-text: #ccccff;
+}
+
+/* Resets margins and padding across all elements, standardizes box-sizing, and enables smooth transitions for colors. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Sets the base root font size to 14px for scaling rem units across the stylesheet. */
+html {
+  font-size: 14px; 
+}
+
+/* Defines default body typography, line height, background, and text colors linked to CSS variables. */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  line-height: 1.6;
+  font-size: 0.95rem; 
+}
+
+/* This colors the hyperlinks */
+a {
+  color: var(--accent-purple-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* This makes sure that the hyperlink changes color when the user is hovering their mouse over it, clearly indicating it is a hyperlink.*/
+a:hover {
+  text-decoration: underline;
+}
+
+/*Pins the header bar to the top of the screen during scrolling with custom background colors, borders, padding, and a subtle drop shadow.*/
+.site-header {
+  background-color: var(--nav-bg);
+  border-bottom: 2px solid var(--nav-border);
+  padding: 14px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/*Constrains the menu to an 860px max width and uses a centered flexbox layout with 16px spacing that wraps cleanly on smaller screens.*/
+.nav-container {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Styles the navigation menu links with bold typography, custom padding, rounded corners, and a smooth color transition effect.*/
+.nav-link {
+  color: var(--nav-link-color);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/*Adds a translucent white highlight background when hovering over a link while keeping the text color unchanged and underlines suppressed.*/
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: var(--nav-link-color);
+  text-decoration: none;
+}
+
+/* Styles the theme-switcher as a transparent, rounded pill button with centered flex alignment, a pointer cursor, and disabled text selection.*/
+.theme-toggle-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  color: var(--nav-link-color);
+  font-size: 0.9rem;
+  padding: 4px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  user-select: none;
+}
+
+/* Highlights the theme button on hover with a purple border and a translucent background. */
+.theme-toggle-btn:hover {
+  border-color: var(--accent-purple);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Centers the main content area horizontally with a max-width and side padding. */
+.page-container {
+  max-width: 860px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+/* Applies heading color variables and sets a consistent, compact line height across heading levels 1 to 3. */
+h1, h2, h3 {
+  color: var(--text-heading);
+  line-height: 1.3;
+}
+
+/* Styles top-level page titles with a larger font size, bottom border divider, and spacing. */
+h1 {
+  font-size: 1.7rem;
+  border-bottom: 2px solid var(--border-subtle);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+/* Formats section subheadings with moderate font sizing and separated top and bottom margins. */
+h2 {
+  font-size: 1.25rem;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+/* Sizes subsection headers and gives them a slight bottom margin to sit close to their following content. */
+h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+/* Justifies paragraph text evenly across words and sets bottom spacing between text blocks. */
+p {
+  text-align: justify;
+  text-justify: inter-word; 
+  margin-bottom: 14px;
+}
+
+/* Indents lists from the left margin and adds bottom spacing after the list structure. */
+ul, ol {
+  margin-left: 22px;
+  margin-bottom: 16px;
+}
+
+/* Justifies list item text evenly and adds slight vertical separation between consecutive items. */
+li {
+  text-align: justify;
+  text-justify: inter-word;
+  margin-bottom: 5px;
+}
+
+/* Arranges the profile image and introduction text side by side with flexbox. */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 30px;
+}
+
+/* Styles the profile picture with fixed dimensions, rounded corners, drop shadow, and prevents resizing in flex containers. */
+.profile-avatar {
+  width: 155px;
+  height: 155px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+/* Removes the standard bottom border and collapses extra padding/margins on profile titles. */
+.profile-intro h1 {
+  border-bottom: none;
+  margin-bottom: 4px;
+  padding-bottom: 0;
+}
+
+/* Formats the subtitle or role text under the profile name with muted coloring and medium weight. */
+.profile-intro .title-tag {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Styles research item containers with an accent left border, subtle background, and smooth hover animations. */
+.paper-box {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--accent-purple);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  transition: all 0.2s ease;
+}
+
+/* Elevates the research paper card on hover with a surface color change and soft drop shadow. */
+.paper-box:hover {
+  background-color: var(--surface-color);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Turns the collapsible summary header into a clickable, unselectable flex row without default list styling. */
+.paper-box summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  user-select: none;
+}
+
+/* Hides the default browser disclosure triangle on WebKit-based browsers. */
+.paper-box summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Adds a custom downward-pointing triangle icon after the summary text with a rotation transition. */
+.paper-box summary::after {
+  content: "▼";
+  font-size: 0.7rem;
+  color: var(--text-subtle);
+  margin-left: 14px;
+  margin-top: 4px;
+  transition: transform 0.25s ease;
+}
+
+/* Rotates the custom dropdown indicator arrow 180 degrees when the paper details element is open. */
+.paper-box[open] summary::after {
+  transform: rotate(180deg);
+}
+
+/* Allows the title and metadata container to expand and occupy the available flexbox width. */
+.paper-header {
+  flex-grow: 1;
+}
+
+/* Formats the research paper title with bold weight and dark heading coloration. */
+.paper-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 3px;
+}
+
+/* Displays publication metadata in a smaller, secondary muted font color. */
+.paper-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Creates a separated expandable section with a subtle top border for the paper abstract or details. */
+.paper-content {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Styles the descriptive body text inside the collapsible content area with slightly reduced font size. */
+.paper-content p {
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+/* Aligns paper download or reference link buttons horizontally with consistent gap spacing. */
+.paper-links {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Styles action links as compact, outlined pill badges matching the purple accent color. */
+.badge-btn {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--accent-purple-dark);
+  color: var(--accent-purple-dark);
+}
+
+/* Inverts the button colors to a solid purple fill with white text when hovered over. */
+.badge-btn:hover {
+  background-color: var(--accent-purple-dark);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Formats the bottom footer with centered muted text, a top divider border, and generous top spacing. */
+.site-footer {
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Lays out each volunteer experience item as a flex row with bottom borders separating entries. */
+.volunteer-entry {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Removes the bottom separator border from the final volunteer item in the sequence. */
+.volunteer-entry:last-of-type {
+  border-bottom: none;
+}
+
+/* Allocates proportional flex space to the textual explanation in the volunteer entry. */
+.volunteer-text {
+  flex: 3;
+}
+
+/* Styles the date span in bold uppercase purple lettering with expanded letter spacing. */
+.volunteer-date {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--accent-purple-dark);
+  font-size: 0.88rem;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Adjusts headings within the volunteer section with specific font sizes and tight margins. */
+.volunteer-text h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+/* Justifies paragraph text within volunteer entries and adds bottom spacing. */
+.volunteer-text p {
+  text-align: justify;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+}
+
+/* Sets width constraints on the photo thumbnail column within the volunteer entry. */
+.volunteer-gallery-col {
+  flex: 1.2;
+  min-width: 160px;
+  max-width: 210px;
+}
+
+/* Creates a square 2x2 photo collage grid that lifts and casts a deeper shadow on hover. */
+.photo-grid-square {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--nav-bg);
+  padding: 4px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Applies a slight upward translation and elevated drop shadow when hovering over the photo grid. */
+.photo-grid-square:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+/* Forces thumbnail images within the grid to fill their respective quadrants with cover cropping. */
+.photo-grid-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Sets up a hidden translucent colored overlay that covers the photo thumbnail square. */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 74, 184, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: 8px;
+  text-align: center;
+  padding: 8px;
+}
+
+/* Reveals the translucent hover overlay and centered text when hovering over the photo square. */
+.photo-grid-square:hover .grid-overlay {
+  opacity: 1;
+}
+
+/* Renders a full-screen fixed backdrop with blurred darkening to host expanded image previews. */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: rgba(15, 15, 25, 0.88);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Activates and reveals the lightbox modal window via flexbox display. */
+.lightbox-modal.active {
+  display: flex;
+}
+
+/* Constrains the displayed lightbox image container within 80% of the viewport dimensions. */
+.lightbox-content-box {
+  position: relative;
+  max-width: 80vw;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scales modal images responsively to maintain their natural aspect ratios within screen boundaries. */
+.lightbox-content-box img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Positions a close button at the top-right corner of the lightbox viewport. */
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+/* Highlights the modal close button with light lavender text when hovered. */
+.lightbox-close:hover {
+  color: #ccccff;
+}
+
+/* Centers circular navigation arrows on the vertical halves of the screen for paging through images. */
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: none;
+  font-size: 1.6rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+/* Places the previous slide button on the left edge of the lightbox screen. */
+.lightbox-prev {
+  left: 24px;
+}
+
+/* Places the next slide button on the right edge of the lightbox screen. */
+.lightbox-next {
+  right: 24px;
+}
+
+/* Illuminates navigation arrows with an opaque lavender background and dark icon on hover. */
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(204, 204, 255, 0.85);
+  color: #222;
+}
+
+/* Displays the current photo index counter below the modal image in light, spaced text. */
+.lightbox-counter {
+  color: #eee;
+  margin-top: 12px;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+}
+
+/* Wraps category filter buttons into a flexible horizontal bar with gap spacing. */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 28px 0;
+}
+
+/* Styles filter buttons as rounded pill badges with muted borders and interactive pointer cursors. */
+.filter-btn {
+  background-color: var(--surface-color);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: 18px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+/* Adds a subtle surface background change when hovering over inactive filter buttons. */
+.filter-btn:hover {
+  background-color: var(--surface-alt);
+  color: var(--text-main);
+}
+
+/* Highlights the currently selected filter pill with a purple accent fill and soft colored shadow. */
+.filter-btn.active {
+  background-color: var(--accent-purple-light);
+  border-color: var(--accent-purple);
+  color: var(--accent-purple-dark);
+  box-shadow: 0 2px 6px rgba(159, 159, 232, 0.35);
+}
+
+/* Arranges workshop cards sequentially in a vertical column with gap spacing. */
+.workshop-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Formats each workshop card with a purple accent border on the left and smooth transition properties. */
+.workshop-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-purple);
+  border-radius: 6px;
+  padding: 16px 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Completely hides workshop cards that do not match the currently active category filter. */
+.workshop-card.hidden {
+  display: none;
+}
+
+/* Aligns the workshop title and date badge on opposite sides using a flexible header layout. */
+.workshop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+/* Formats the primary workshop title with bold styling and heading variable colors. */
+.workshop-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin: 0;
+}
+
+/* Highlights the date of the workshop inside an accented purple pill badge. */
+.workshop-date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-purple-dark);
+  background: var(--accent-purple-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+/* Styles collaborator attribution text beneath workshop titles with a muted secondary color. */
+.workshop-collab {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* Gives highlighted emphasis and darker main color to collaborator names inside attribution lines. */
+.workshop-collab strong {
+  color: var(--text-main);
+}
+
+/* Controls line spacing and justification for workshop descriptive paragraphs. */
+.workshop-desc {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.55;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+/* Groups and wraps keyword metadata tags neatly along the bottom of the card. */
+.workshop-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Formats topic tags with compact padding, subtle border lines, and secondary tag colors. */
+.tag-badge {
+  font-size: 0.74rem;
+  font-weight: 600;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--tag-border);
+}
+
+/* Applies mobile-friendly overrides when the viewport width is 768 pixels or narrower. */
+@media (max-width: 768px) {
+  /* Stacks profile contents vertically and centers the text on small screens. */
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  /* Compresses navigation item spacing for narrower mobile viewports. */
+  .nav-container {
+    gap: 10px;
+  }
+  /* Reverses the volunteer layout to stack image thumbnails above the text on mobile screens. */
+  .volunteer-entry {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  /* Adjusts the volunteer photo gallery width to fit narrower mobile dimensions. */
+  .volunteer-gallery-col {
+    max-width: 210px;
+    width: 60%;
+    margin-bottom: 16px;
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- This sets the head of the webpage, including meta tags and the title. Viewport ensures proper scaling on different devices. -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <!-- Sets the theme to dark or light based on the user's preference stored in localStorage or the system preference. If no preference is found, it defaults to light mode. -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css?v=4' | relative_url }}">
+</head>
+
+<!-- The body of the webpage contains the header, main content, and footer. The header includes navigation links and a theme toggle button. The main content is dynamically inserted based on the page being viewed. The footer provides copyright information. -->
+<body>
+  <!-- Header with navigation links and theme toggle button. The header has a light purple background and a darker purple border at the bottom. The navigation links are styled with a dark color for better visibility against the light background. -->
+  <header class="site-header" style="background-color: #ccccff !important; border-bottom: 2px solid #b8b8f0 !important;">
+    
+    <nav class="nav-container">
+      {% for item in site.navbar_links %}
+        {% assign title = item[0] %}
+        {% assign url = item[1] %}
+        <a class="nav-link" href="{{ url | relative_url }}" style="color: #222222 !important;">{{ title }}</a>
+      {% endfor %}
+
+      <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle theme" style="border: 1px solid #b8b8f0 !important; color: #222222 !important;">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </nav>
+
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="page-container">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. Built with Jekyll &amp; GitHub Pages.</p>
+  </footer>
+
+  <!-- Theme Toggle Controller. This part creates the button that allows the switch between the light and dark themes.-->
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('theme-toggle');
+      const iconSpan = document.getElementById('theme-icon');
+
+      function updateIcon() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        iconSpan.textContent = isDark ? '☀️' : '🌙';
+      }
+
+      updateIcon();
+
+      toggleBtn.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('theme', nextTheme);
+        updateIcon();
+      });
+    })();
+  </script>
+
+</body>
+</html>
